@@ -13,8 +13,7 @@ const Search = () => {
   for (let i = new Date().getFullYear(); i >= 1908; i--) {
     years.push(i);
   }
-  //   TODO Use user input to run API call with search parametes. Pass down response from API to child (child will determine what to display)
-
+  // TODO Search is functional, later on add pagination using 'page' API key?
   return (
     <>
       <header>OMDb Search!</header>
@@ -56,7 +55,6 @@ const Search = () => {
           {/* type radios */}
           <div>
             <input
-              // TODO state checked, value, onChange need to be finished.
               type="radio"
               name="type"
               id="typeBoth"
