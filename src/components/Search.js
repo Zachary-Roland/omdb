@@ -10,14 +10,14 @@ const Search = () => {
   //   ? Default value should be an empty string to denote any type
   const [response, setResponse] = useState("");
   const years = [];
-  for (let i = 1908; i <= new Date().getFullYear(); i++) {
+  for (let i = new Date().getFullYear(); i >= 1908; i--) {
     years.push(i);
   }
   //   TODO Use user input to run API call with search parametes. Pass down response from API to child (child will determine what to display)
 
   return (
     <>
-      <header>Header</header>
+      <header>OMDb Search!</header>
       <aside>
         <form>
           {/* search input */}
@@ -107,11 +107,11 @@ const Search = () => {
                   searchType
               )
                 .then((res) => {
-                  console.log(res);
+                  //   console.log(res);
                   return res.json();
                 })
                 .then((res) => {
-                  console.log(res);
+                  //   console.log(res);
                   setResponse(res);
                 });
             }}

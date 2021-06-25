@@ -1,19 +1,27 @@
 import React from "react";
+import ResultDisplay from "./ResultDisplay";
 
 const ResultsContainer = ({ response }) => {
-  let resLength = response.totalResults;
+  let totalResults = response.totalResults;
   const isResponse = response.Response;
-  if (isResponse === "False") {
-    resLength = "No";
-  } else {
-    console.log(isResponse);
-    console.log(resLength);
-  }
+  let searchResults = response.Search;
+  //   console.log(searchResults);
+  //   if (isResponse === "False") {
+  //     totalResults = "No";
+  //   } else {
+  //     console.log(isResponse);
+  //     console.log(totalResults);
+  //   }
+  // !  You can write conditionals for rendering elements such as one of these options:
+  //! {someBoolean ? <div>Is True</div> : <div> Is False</div>}
+  //! {someBoolean && <h1>Is True</div>}
   return (
     <div>
-      <h1>{resLength} Results!</h1>
-      <h6>Your search has {resLength} results!</h6>
-      {/* <ResultDisplay /> */}
+      {isResponse === "True" && <h1>Showing 10 of {totalResults} results!</h1>}
+      {isResponse === "True" &&
+        searchResults.map((movie, idx) => (
+          <ResultDisplay key={idx} movie={movie} />
+        ))}
     </div>
   );
 };
