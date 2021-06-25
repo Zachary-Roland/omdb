@@ -1,49 +1,56 @@
 import React, { useState } from "react";
+import ResultsContainer from "./ResultsContainer";
 
 const Search = () => {
   const [search, setSearch] = useState("");
   //   ?What should the default value be? An empty search will yield no results...
-  const [searchYear, setSearchYear] = useState("");
+  const [searchYear, setSearchYear] = useState("any");
   //   ? Defualt value should be an empty string to denote any year
   const [searchType, setSearchType] = useState("");
   //   ? Default value should be an empty string to denote any type
+  const [response, setResponse] = useState("");
   const years = [];
   for (let i = 1908; i <= new Date().getFullYear(); i++) {
     years.push(i);
   }
+  //   TODO Use user input to run API call with search parametes. Pass down response from API to child (child will determine what to display)
+
   return (
-    <div>
+    <>
       <header>Header</header>
       <aside>
         <form>
           {/* search input */}
-          <label htmlFor="search">Search:</label>
-          <input
-            id="search"
-            value={search}
-            placeholder="Movie Search"
-            onChange={(e) => {
-              setSearch(e.target.value);
-            }}
-          ></input>
+          <div>
+            <label htmlFor="search">Search:</label>
+            <input
+              id="search"
+              value={search}
+              placeholder="Movie Search"
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            ></input>
+          </div>
           {/* year dropdown - use a map function to render years from 1908 to present */}
           <div>
             <label htmlFor="yearDropdown">Year:</label>
             <select
               name="yearDropdown"
               id="years"
-              // value={}
+              value={searchYear}
               onChange={(e) => {
                 setSearchYear(e.target.value);
-                console.log(searchYear);
               }}
             >
+              <option key="any" value="any">
+                Any
+              </option>
               {years.map((y) => (
                 <option key={y} value={y}>
                   {y}
                 </option>
               ))}
-              >
             </select>
           </div>
           {/* type radios */}
@@ -87,8 +94,34 @@ const Search = () => {
             <label htmlFor="typeSeries">Series</label>
           </div>
         </form>
+        <div>
+          <button
+            onClick={(e) => {
+              // fetch API URL plus s={search} plus y={year} plus type={type}
+              fetch(
+                "http://www.omdbapi.com/?apikey=5d6248fb&s=" +
+                  search +
+                  "&y=" +
+                  searchYear +
+                  "&type=" +
+                  searchType
+              )
+                .then((res) => {
+                  console.log(res);
+                  return res.json();
+                })
+                .then((res) => {
+                  console.log(res);
+                  setResponse(res);
+                });
+            }}
+          >
+            Search!
+          </button>
+        </div>
       </aside>
-    </div>
+      <ResultsContainer response={response} />
+    </>
   );
 };
 
