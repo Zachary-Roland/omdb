@@ -1,0 +1,41 @@
+.flex {
+  display: flex;
+  flex-flow: row wrap;
+}
+.textCenter {
+  text-align: center;
+}
+.flex100 {
+  flex-basis: 100%;
+}
+.font800 {
+  font-weight: 800;
+}
+.font600 {
+  font-weight: 600;
+}
+.fontLighter {
+  font-weight: lighter;
+}
+.bgGray {
+  background-color: #e0e0e0;
+}
+.bgAccent {
+  background-color: #c63f17;
+}
+.bgPrimary {
+  background-color: #ffa270;
+}
+.bgSecondary {
+  background-color: #ff7043;
+}
+header {
+  background-color: #c63f17;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 40px;
+}
+.form {
+  max-height: 500px;
+  min-width: 100%;
+}
