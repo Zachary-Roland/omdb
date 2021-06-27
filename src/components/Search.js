@@ -9,6 +9,7 @@ const Search = () => {
   const [searchType, setSearchType] = useState("");
   //   ? Default value should be an empty string to denote any type
   const [response, setResponse] = useState("");
+  // TODO implement piece of state to check if search button has been clicked. Boolean? ON input box change set clicked to false. On
   const years = [];
   for (let i = new Date().getFullYear(); i >= 1908; i--) {
     years.push(i);
@@ -118,7 +119,7 @@ const Search = () => {
           </button>
         </div>
       </aside>
-      <ResultsContainer response={response} />
+      <ResultsContainer search={search.length} response={response} />
     </>
   );
 };

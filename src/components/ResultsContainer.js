@@ -1,7 +1,8 @@
 import React from "react";
 import ResultDisplay from "./ResultDisplay";
 
-const ResultsContainer = ({ response }) => {
+const ResultsContainer = ({ response, search }) => {
+  let searchLength = search;
   let totalResults = response.totalResults;
   const isResponse = response.Response;
   let searchResults = response.Search;
@@ -10,11 +11,21 @@ const ResultsContainer = ({ response }) => {
   //! {someBoolean && <h1>Is True</div>}
   return (
     <div>
-      {isResponse === "True" && <h1>Showing 10 of {totalResults} results!</h1>}
-      {isResponse === "True" &&
+      {/* Is searchbox 0? yes, null. no, nested condition */}
+      {searchLength === 0 &&
+      searchResults === "undefined" ? null : searchLength <= 2 &&
+        searchResults === "undefined" ? ( // Is search <= 2? yes, error msg. no nested condition
+        <h1>Your search must have at least 3 characters!</h1>
+      ) : // Are there results? Yes, show results. No, error msg.
+      isResponse === "False" ? (
+        <h1>No Results! Try new search terms!</h1>
+      ) : // is searchResults undefined? If so, return null. If not, show results. (w/out this condition it breaks)
+      searchResults === undefined ? null : (
+        <h1>Showing 10 of {totalResults} results!</h1> &&
         searchResults.map((movie, idx) => (
           <ResultDisplay key={idx} movie={movie} />
-        ))}
+        ))
+      )}
     </div>
   );
 };

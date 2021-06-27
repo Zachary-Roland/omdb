@@ -8,7 +8,7 @@ const ResultDisplay = ({ movie }) => {
       <h4>
         ({movie.Year}, {movie.Type})
       </h4>
-      <img src={movie.Poster} alt="{movie.Title}, {movie.Year} poster"></img>
+      <img src={movie.Poster} alt="movie.Title, {movie.Year} poster"></img>
     </div>
   );
 };
