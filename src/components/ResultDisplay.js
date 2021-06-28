@@ -3,7 +3,7 @@ import React from "react";
 const ResultDisplay = ({ movie }) => {
   // SHow title, year, type, and poster
   return (
-    <div>
+    <div className="result bgPrimary">
       <h2>{movie.Title}</h2>
       <h4>
         ({movie.Year}, {movie.Type})

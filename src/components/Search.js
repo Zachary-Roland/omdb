@@ -17,10 +17,10 @@ const Search = () => {
   }
   // TODO Search is functional, later on add pagination using 'page' API key?
   return (
-    <div className="textCenter">
-      <header className="font800">OMDb Search!</header>
-      <aside className="flex aside textCenter bgSecondary flex100">
-        <div className="searchItems adaptHeight flex100 bgSecondary">
+    <div className="textCenter flex">
+      <header className="font800 flex100">OMDb Search!</header>
+      <aside className="flex aside adaptHeight textCenter bgSecondary">
+        <div className="searchItems bgSecondary">
           <form className="form flex">
             {/* search input */}
             <div className="flex100 lineHeight50">
